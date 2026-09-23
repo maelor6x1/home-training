@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d10">
+  <title>Home Training</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">H</span><span>HOME<span>TRAINING</span></span></div>
+    <button class="icon-btn" id="themeBtn" aria-label="Alternar tema">☾</button>
+  </header>
+
+  <main id="app">
+    <section class="hero">
+      <div class="eyebrow">TREINO EM CASA</div>
+      <h1>Treine. Evolua.<br><em>Repita.</em></h1>
+      <p>Treinos guiados de força, hipertrofia e calistenia — com ou sem equipamentos.</p>
+      <button class="primary" id="startToday">Começar treino de hoje <span>→</span></button>
+    </section>
+
+    <section class="panel">
+      <div class="section-head"><h2>Monte seu treino</h2><span>1 — 3</span></div>
+      <div class="option-group">
+        <label>Nível</label>
+        <div class="choices" id="levelChoices">
+          <button data-value="beginner" class="choice active"><b>🟢</b><span>Iniciante</span><small>Base e técnica</small></button>
+          <button data-value="intermediate" class="choice"><b>🟡</b><span>Intermediário</span><small>Mais volume</small></button>
+          <button data-value="advanced" class="choice"><b>🔴</b><span>Avançado</span><small>Alta dificuldade</small></button>
+        </div>
+      </div>
+      <div class="option-group">
+        <label>Objetivo</label>
+        <div class="chips" id="goalChoices">
+          <button data-value="hypertrophy" class="chip active">💪 Hipertrofia</button>
+          <button data-value="strength" class="chip">🏋️ Força</button>
+          <button data-value="calisthenics" class="chip">🤸 Calistenia</button>
+          <button data-value="conditioning" class="chip">🔥 Condicionamento</button>
+        </div>
+      </div>
+      <div class="option-group">
+        <label>Equipamentos</label>
+        <div class="chips" id="equipmentChoices">
+          <button data-value="none" class="chip active">Sem equipamentos</button>
+          <button data-value="basic" class="chip">Equipamentos básicos</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="today-card">
+      <div>
+        <div class="eyebrow">TREINO DE HOJE</div>
+        <h2>Treino <span id="todaySplit">A</span></h2>
+        <p id="todayFocus">Peito • Ombros • Tríceps</p>
+        <div class="meta"><span>⏱ 30–40 min</span><span>•</span><span id="todayLevel">Iniciante</span></div>
+      </div>
+      <button class="circle-arrow" id="startCard">→</button>
+    </section>
+
+    <section class="splits">
+      <div class="section-head"><h2>Divisão A / B / C</h2><a href="#workouts">Ver todos</a></div>
+      <div class="split-grid">
+        <button class="split-card active" data-split="A"><span>A</span><b>Empurrar</b><small>Peito • Ombros • Tríceps</small></button>
+        <button class="split-card" data-split="B"><span>B</span><b>Puxar</b><small>Costas • Bíceps</small></button>
+        <button class="split-card" data-split="C"><span>C</span><b>Pernas + Core</b><small>Inferiores • Abdômen</small></button>
+      </div>
+    </section>
+
+    <section class="exercise-preview" id="workouts">
+      <div class="section-head"><h2>Exercícios</h2><a href="#workouts">Biblioteca</a></div>
+      <div id="exerciseList" class="exercise-list"></div>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="workoutModal">
+    <div class="modal-card">
+      <button class="close" id="closeModal">×</button>
+      <div class="eyebrow" id="modalEyebrow">AQUECIMENTO</div>
+      <div id="modalVisual" class="exercise-visual"><div class="visual-placeholder">GIF<br>DO EXERCÍCIO</div></div>
+      <h2 id="modalTitle">Polichinelos</h2>
+      <p id="modalInstruction">Prepare o corpo para o treino.</p>
+      <div class="timer" id="timer">00:30</div>
+      <div class="progress"><i id="timerProgress"></i></div>
+      <div class="modal-actions">
+        <button class="secondary" id="pauseBtn">Pausar</button>
+        <button class="primary" id="nextBtn">Próximo →</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/workouts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
