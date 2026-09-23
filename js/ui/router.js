@@ -1,3 +1,0 @@
-import {$,$$} from '../core/utils.js';
-export function showScreen(id){const current=document.querySelector('.screen:not(.hidden)');if(current&&current.dataset.screen!==id){current.classList.add('screen-leave');setTimeout(()=>current.classList.remove('screen-leave'),260)}$$('.screen').forEach(s=>{const active=s.dataset.screen===id;s.classList.toggle('hidden',!active);if(active){s.classList.remove('screen-enter');requestAnimationFrame(()=>s.classList.add('screen-enter'));}});$$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===id));window.scrollTo?.(0,0)}
-export function bindTabs(){ $$('.tab').forEach(t=>t.addEventListener('click',()=>showScreen(t.dataset.tab))) }
