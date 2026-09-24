@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#080b10">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Home Training — treinos personalizados para fazer em casa.">
+  <title>Home Training</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/screens.css">
+  <link rel="stylesheet" href="css/workout.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="app" class="app-shell">
+  <!-- Onboarding -->
+  <section id="screen-onboarding" class="screen screen-onboarding" data-screen="onboarding">
+    <header class="onboarding-header">
+      <button id="onboardingBack" class="icon-button ghost" aria-label="Voltar" hidden></button>
+      <a class="brand" href="#" aria-label="Home Training"><span class="brand-mark">H</span><span>HOME TRAINING</span></a>
+      <span id="onboardingStep" class="step-counter">1/6</span>
+    </header>
+    <div class="onboarding-progress"><span id="onboardingProgress"></span></div>
+    <main class="onboarding-main">
+      <div class="eyebrow">PERSONALIZE SEU PLANO</div>
+      <h1 id="questionTitle"></h1>
+      <p id="questionSubtitle" class="muted lead"></p>
+      <div id="questionContent"></div>
+    </main>
+    <footer class="onboarding-footer">
+      <button id="onboardingNext" class="button primary full">Continuar <span>→</span></button>
+      <button id="onboardingSkip" class="button text full">Pular por enquanto</button>
+    </footer>
+  </section>
+
+  <!-- Main app -->
+  <section id="screen-home" class="screen app-screen hidden" data-screen="home">
+    <header class="topbar">
+      <div><span class="eyebrow">SEU PLANO</span><h2>Olá! 👋</h2></div>
+      <button id="homeProfile" class="avatar-button" aria-label="Abrir perfil">G</button>
+    </header>
+    <main class="page-scroll">
+      <section class="plan-hero card">
+        <div class="hero-top"><span class="badge neutral">PLANO PERSONALIZADO</span><span id="heroSplit" class="hero-split">A</span></div>
+        <h1 id="planName">Seu plano</h1>
+        <p id="planDescription" class="muted"></p>
+        <div id="planMeta" class="meta-row"></div>
+        <button id="startPlan" class="button light full">Começar treino <span>→</span></button>
+      </section>
+
+      <section class="streak-card card">
+        <div class="streak-icon">🔥</div>
+        <div class="streak-copy"><b><span id="homeStreak">0</span> dias de sequência</b><small id="streakHint">Treine hoje para manter o fogo aceso.</small></div>
+        <div class="streak-xp"><b id="homeXP">0</b><small>XP</small></div>
+      </section>
+
+      <section class="level-card card">
+        <div class="level-head"><div><span>NÍVEL <b id="userLevel">1</b></span><h3 id="levelName">Novato</h3></div><strong id="levelProgress">0/300</strong></div>
+        <div class="level-track"><span id="levelBar"></span></div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading"><div><span class="eyebrow">ROTINA</span><h2>Seu caminho</h2></div><button id="editSchedule" class="link-button">Editar</button></div>
+        <div id="weekGrid" class="week-grid"></div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading"><div><span class="eyebrow">RECOMPENSAS</span><h2>Conquistas</h2></div><button id="openBadges" class="link-button">Ver todas</button></div>
+        <div id="badgeRow" class="badge-row"></div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading"><div><span class="eyebrow">RESUMO</span><h2>Progresso</h2></div><button id="openStats" class="link-button">Detalhes</button></div>
+        <div id="homeStats" class="stats-grid"></div>
+      </section>
+    </main>
+    <nav class="tabbar" aria-label="Navegação principal">
+      <button class="tab active" data-tab="home"><span class="tab-icon">⌂</span><small>Início</small></button>
+      <button class="tab" data-tab="discover"><span class="tab-icon">⌕</span><small>Descobrir</small></button>
+      <button class="tab" data-tab="daily"><span class="tab-icon">▣</span><small>Diário</small></button>
+      <button class="tab" data-tab="profile"><span class="tab-icon">●</span><small>Meu</small></button>
+    </nav>
+  </section>
+
+  <section id="screen-discover" class="screen app-screen hidden" data-screen="discover">
+    <header class="page-header"><div><span class="eyebrow">BIBLIOTECA</span><h1>Descobrir</h1></div></header>
+    <main class="page-scroll">
+      <label class="search-field"><span>⌕</span><input id="exerciseSearch" type="search" autocomplete="off" placeholder="Buscar exercício..."></label>
+      <div id="bodyFilters" class="chip-scroller"></div>
+      <div id="levelFilters" class="chip-scroller"></div>
+      <div id="equipmentFilters" class="chip-scroller"></div>
+      <div class="section-heading compact"><div><span class="eyebrow">BIBLIOTECA</span><h2>Exercícios</h2></div><span id="exerciseResultCount" class="muted small"></span></div>
+      <div id="exerciseGrid" class="exercise-grid"></div>
+    </main>
+    <nav class="tabbar"><button class="tab" data-tab="home"><span class="tab-icon">⌂</span><small>Início</small></button><button class="tab active" data-tab="discover"><span class="tab-icon">⌕</span><small>Descobrir</small></button><button class="tab" data-tab="daily"><span class="tab-icon">▣</span><small>Diário</small></button><button class="tab" data-tab="profile"><span class="tab-icon">●</span><small>Meu</small></button></nav>
+  </section>
+
+  <section id="screen-daily" class="screen app-screen hidden" data-screen="daily">
+    <header class="page-header"><div><span class="eyebrow">ROTINA</span><h1>Diário</h1></div></header>
+    <main class="page-scroll">
+      <div id="dateStrip" class="date-strip"></div>
+      <section class="daily-hero card">
+        <div class="hero-top"><span class="badge accent">🔥 <span id="dailyStreak">0</span> DIAS</span><span id="todayStatus" class="muted small">0 min</span></div>
+        <h2 id="dailyTitle">Continue a sequência.</h2><p id="dailyMessage" class="muted"></p>
+        <button id="dailyStart" class="button primary">Começar um treino <span>→</span></button>
+      </section>
+      <section class="activity-card card">
+        <div class="section-heading compact"><div><span class="eyebrow">HOJE</span><h2>Atividade</h2></div></div>
+        <div class="activity-main"><div class="ring"><span id="dailyMinutes">0</span><small>min</small></div><div class="activity-copy"><b>Seu movimento de hoje</b><p class="muted">Cada série concluída aproxima você da próxima conquista.</p></div></div>
+        <div id="dailyMetrics" class="mini-metrics"></div>
+      </section>
+      <section class="content-section"><div class="section-heading"><div><span class="eyebrow">HISTÓRICO</span><h2>Treinos recentes</h2></div></div><div id="history" class="history-list"></div></section>
+    </main>
+    <nav class="tabbar"><button class="tab" data-tab="home"><span class="tab-icon">⌂</span><small>Início</small></button><button class="tab" data-tab="discover"><span class="tab-icon">⌕</span><small>Descobrir</small></button><button class="tab active" data-tab="daily"><span class="tab-icon">▣</span><small>Diário</small></button><button class="tab" data-tab="profile"><span class="tab-icon">●</span><small>Meu</small></button></nav>
+  </section>
+
+  <section id="screen-profile" class="screen app-screen hidden" data-screen="profile">
+    <header class="page-header"><div><span class="eyebrow">SEU ESPAÇO</span><h1>Meu</h1></div></header>
+    <main class="page-scroll profile-page">
+      <section class="profile-card card"><div class="profile-avatar">G</div><div><span class="eyebrow">PERFIL</span><h2>Seu plano</h2><p id="profileSummary" class="muted"></p></div></section>
+      <div class="profile-actions">
+        <button id="editPlan" class="settings-card"><span>⚙</span><b>Refazer plano</b><small>Alterar objetivos e rotina</small></button>
+        <button id="openStatsProfile" class="settings-card"><span>◔</span><b>Estatísticas</b><small>Ver evolução</small></button>
+        <button id="openBadgesProfile" class="settings-card"><span>★</span><b>Conquistas</b><small>Seus prêmios</small></button>
+        <button id="exportData" class="settings-card"><span>↗</span><b>Exportar progresso</b><small>Salvar seus dados</small></button>
+      </div>
+      <section class="content-section"><div class="section-heading"><div><span class="eyebrow">RECOMPENSAS</span><h2>Todos os prêmios</h2></div></div><div id="allBadges" class="badge-grid"></div></section>
+      <button id="resetData" class="button danger full">Reiniciar progresso</button>
+      <p class="tiny">O progresso fica salvo neste dispositivo. Nenhuma conta é necessária.</p>
+    </main>
+    <nav class="tabbar"><button class="tab" data-tab="home"><span class="tab-icon">⌂</span><small>Início</small></button><button class="tab" data-tab="discover"><span class="tab-icon">⌕</span><small>Descobrir</small></button><button class="tab" data-tab="daily"><span class="tab-icon">▣</span><small>Diário</small></button><button class="tab active" data-tab="profile"><span class="tab-icon">●</span><small>Meu</small></button></nav>
+  </section>
+</div>
+
+<!-- Workout -->
+<div id="workoutModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="workout-shell">
+    <header class="workout-header"><button id="closeWorkout" class="icon-button ghost" aria-label="Fechar">×</button><div><span id="workoutCounter" class="eyebrow">1/1</span><b id="workoutName">Treino</b></div><button id="soundToggle" class="icon-button ghost" aria-label="Som">◉</button></header>
+    <div id="prepScreen" class="prep-view">
+      <span class="badge accent">PREPARAÇÃO</span><div class="prep-ring"><div><b id="prepCount">30</b><small>seg</small></div></div>
+      <h1>Prepare seu espaço.</h1><p class="muted">Você terá 30 segundos antes do aquecimento começar.</p>
+      <div class="prep-checks"><span>✓ Separe a água</span><span>✓ Deixe o espaço livre</span><span>✓ Ajuste seu apoio</span></div>
+      <div class="prep-progress"><span id="prepProgress"></span></div>
+      <div class="prep-actions"><button id="skipPreparation" class="button primary full">Pular preparação <span>→</span></button><button id="cancelPreparation" class="button text full">Cancelar</button></div>
+    </div>
+    <div id="workoutStage" class="workout-stage hidden">
+      <div class="workout-progress"><span id="workoutProgress"></span></div>
+      <div class="exercise-head"><span id="workoutType" class="eyebrow">AQUECIMENTO</span><h1 id="workoutTitle">Exercício</h1><p id="workoutSubtitle" class="muted"></p></div>
+      <div id="exerciseMedia" class="exercise-media"></div>
+      <div class="exercise-target"><span id="setLabel">SÉRIE 1 DE 3</span><b id="targetLabel">12 repetições</b></div>
+      <div id="repCounter" class="rep-control"><button id="repMinus" class="round-button">−</button><div><b id="repDone">0</b><span>/</span><b id="repGoal">12</b></div><button id="repPlus" class="round-button">+</button></div>
+      <div id="holdTimer" class="hold-timer hidden">00:30</div>
+      <div id="restBox" class="rest-panel hidden"><span>DESCANSO</span><b id="restTimer">00:45</b><button id="skipRest" class="button secondary">Pular descanso</button></div>
+      <div class="workout-actions"><button id="replaceExercise" class="button secondary">↻ Trocar</button><button id="workoutNext" class="button primary">Concluir série <span>→</span></button></div>
+      <button id="skipExercise" class="button text full">Pular exercício</button>
+    </div>
+  </div>
+</div>
+
+<div id="feedbackModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="feedback-card">
+    <span class="eyebrow">COMO FOI O TREINO?</span>
+    <h1>Seu feedback ajusta o próximo treino.</h1>
+    <p class="muted feedback-intro">Conte como você se sentiu. O Home Training usa sua avaliação e seu comentário para ajustar intensidade, volume e dificuldade da próxima sessão.</p>
+    <div class="feedback-options" role="group" aria-label="Dificuldade do treino">
+      <button type="button" class="feedback-option" data-feeling="easy"><span>🟢</span><b>Fácil</b><small>Poderia fazer mais</small></button>
+      <button type="button" class="feedback-option" data-feeling="moderate"><span>🟡</span><b>Moderado</b><small>Na medida certa</small></button>
+      <button type="button" class="feedback-option" data-feeling="hard"><span>🔴</span><b>Difícil</b><small>Foi bem pesado</small></button>
+    </div>
+    <label class="feedback-label" for="feedbackComment">Quer contar mais?</label>
+    <textarea id="feedbackComment" class="feedback-textarea" maxlength="500" placeholder="Ex.: a parte de pernas foi tranquila, mas a última série de agachamentos foi pesada..."></textarea>
+    <p id="feedbackError" class="feedback-error" aria-live="polite"></p>
+    <button id="feedbackContinue" class="button primary full" disabled>Continuar</button>
+    <button id="feedbackSkip" class="button text full">Agora não</button>
+  </div>
+</div>
+
+<div id="rewardModal" class="modal hidden" role="dialog" aria-modal="true"><div class="reward-card"><div id="rewardIcon" class="reward-icon">🔥</div><span class="eyebrow">TREINO CONCLUÍDO</span><h1 id="rewardTitle">Você conseguiu!</h1><p id="rewardText" class="muted"></p><div id="rewardStats" class="reward-stats"></div><div id="newBadge" class="new-badge hidden"></div><button id="rewardClose" class="button primary full">Continuar</button></div></div>
+<div id="detailModal" class="modal hidden" role="dialog" aria-modal="true"><div class="detail-card"><button id="closeDetail" class="icon-button ghost close-detail" aria-label="Fechar">×</button><div id="detailContent"></div></div></div>
+<div id="toast" class="toast" aria-live="polite"></div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
